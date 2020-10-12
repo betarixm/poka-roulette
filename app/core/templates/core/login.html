@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="titleBox">
+        <h1 class="title">
+            POKA ROULETTE
+        </h1>
+    </div>
+
+    <div class="mainBox color-transparent">
+        <div class="loginBox">
+            <h3 class="subtitle">Login</h3>
+            {% if form.errors %}
+            <div class="warnMsg">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <form class="loginForm" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input name="id" type="text" placeholder="POVIS ID"/>
+                <button class="btn" type="submit">Go!</button>
+            </form>
+        </div>
+        <div class="description">
+            포비스 메일로 상품 확인 절차가 진행되오니 본인 아이디를 기입해주시기 바랍니다. 타인의 메일을 써서 받는 불이익은 책임지지 않습니다.
+        </div>
+    </div>
+{% endblock %}

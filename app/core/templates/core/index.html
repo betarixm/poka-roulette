@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="titleBox">
+        <h1 class="title">
+            POKA ROULETTE
+        </h1>
+        <h2 class="description">
+            지금, 당신의 행운을 테스트 해보세요!<br>
+            푸짐한 상품이 쏟아집니다!
+        </h2>
+        <a class="btn" href="{% url "roulette" %}">Go</a>
+    </div>
+
+    <div class="mainBox color-transparent">
+        {% include 'core/itemList.html' with items=items%}
+    </div>
+
+
+{% endblock %}

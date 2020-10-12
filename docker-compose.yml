@@ -1,0 +1,33 @@
+version: '3.3'
+
+volumes:
+  log:
+  static:
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: DjangoDockerFile
+    ports:
+      - 8080:8080
+    volumes:
+      - log:/log
+      - static:/app/static
+    restart: on-failure
+    command: ["/entry/entrypoint.sh"]
+
+
+  nginx:
+    build:
+      context: .
+      dockerfile: NginxDockerFile
+    ports:
+      - 1337:80
+    restart: on-failure
+    volumes:
+      - log:/log
+      - static:/static
+    depends_on:
+      - web
+

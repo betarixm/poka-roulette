@@ -1,0 +1,20 @@
+FROM python:3.8
+
+LABEL Name="poka-roulette-django"
+LABEL Version="0.1"
+LABEL Maintainer="mzg00@postech.ac.kr"
+
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /entry
+ADD ./entry /entry/
+ADD requirements.txt /entry/
+RUN pip install -r /entry/requirements.txt
+RUN chmod +x /entry/entrypoint.sh
+RUN mkdir /static && mkdir /app
+ADD ./app/static /static/
+ADD ./app /app/
+
+RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/' /etc/ssl/openssl.cnf
+
+
+WORKDIR /app

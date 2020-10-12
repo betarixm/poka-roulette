@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} POKA ROULETTE</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+{% if povis_id %}
+<div class="header" style="font-size: 1.75vmin; display: flex; flex-direction: row; justify-content: flex-end; align-items: center;padding: 2vmin">
+    <div>
+        {{ povis_id }}
+    </div>
+
+    <a class="small-btn" style="box-shadow: 0 5px 10px #9f2247, 0 -10px 20px #d72e5f; border-radius: 1vmin; margin-left: 1vmin; background-color: white; padding: 0.5vmin 0.7vmin; color: black" href="{% url "logout" %}">Logout</a>
+</div>
+{% endif %}
+<div class="app">
+    {% block body %}
+    {% endblock %}
+</div>
+<div class="footer">
+    <div style="margin-bottom: 1vmin">2020 사이버포스텍카이스트학생교류전 준비위원회</div>
+    <a href="https://github.com/beta-lux">권민재, beta@PLUS.POSTECH</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+FROM nginx
+
+LABEL Name="poka-roulette-django"
+LABEL Version="0.1"
+LABEL Maintainer="mzg00@postech.ac.kr"
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d

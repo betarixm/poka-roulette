@@ -1,0 +1,19 @@
+<h3 class="subtitle">Current Items</h3>
+
+<div class="itemList">
+    {% for item in items %}
+        <div class="item">
+            <div class="num">
+                {{ item.num }}
+            </div>
+
+            <div>
+                <div class="name">
+                    {{ item.name }}
+                </div>
+            </div>
+
+
+        </div>
+    {% endfor %}
+</div>

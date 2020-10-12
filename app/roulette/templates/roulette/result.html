@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="titleBox">
+        <h1 class="title">
+            POKA ROULETTE
+        </h1>
+    </div>
+
+
+    <div class="mainBox color-transparent">
+        <h3 class="subtitle">Result</h3>
+        {% if is_roulette %}
+            <img class="imgRoulette" src="{% static 'img/roul.png' %}" alt="Roulette"/>
+            {% static "" as baseStatic %}
+            <img src="
+                {% if img_src %}
+                        {{ baseStatic }}/img/{{ img_src }}
+                    {% else %}
+                        {% static 'img/fallback.png' %}
+                {% endif %}
+            " class="imgResult"/>
+        {% endif %}
+        <div class="rouletteResult">
+            {{ result }}
+        </div>
+    </div>
+
+{% endblock %}

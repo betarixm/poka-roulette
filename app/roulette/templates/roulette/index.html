@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="titleBox">
+        <h1 class="title">
+            POKA ROULETTE
+        </h1>
+    </div>
+
+    <div class="mainBox color-transparent">
+
+        <h3 class="subtitle">Current Round</h3>
+        {% if rnd %}
+            <div class="roundName">
+                {{ rnd.name }}
+            </div>
+
+            <div class="roundDesp">
+                {{ rnd.start_time }} - {{ rnd.end_time }}
+            </div>
+
+
+            {% if is_valid %}
+                <form action="{% url 'roulette' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn" type="submit">Go!</button>
+                </form>
+                {% else %}
+                <div class="warnMsg">이미 참여한 이벤트입니다.</div>
+
+            {% endif %}
+        {% else %}
+            현재 진행 중인 이벤트가 없습니다.
+        {% endif %}
+
+        <h3 class="subtitle" style="margin-top: 10vmin">All Events</h3>
+        {% if rounds %}
+        <div class="itemList">
+            {% for item in rounds %}
+                <div class="item">
+                    <div class="itemName">
+                        {{ item.name }}
+                    </div>
+                    <div>
+                        <div class="itemTime">
+                            {{ item.start_time }}
+                        </div>
+                        <div class="itemTime">
+                            {{ item.end_time }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            계획 중인 이벤트가 없습니다.
+        {% endif %}
+
+        {% include 'core/itemList.html' with items=items%}
+    </div>
+
+
+{% endblock %}
